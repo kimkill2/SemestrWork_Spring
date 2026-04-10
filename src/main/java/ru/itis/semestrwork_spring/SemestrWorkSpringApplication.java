@@ -1,0 +1,13 @@
+package ru.itis.semestrwork_spring;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SemestrWorkSpringApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SemestrWorkSpringApplication.class, args);
+    }
+
+}
