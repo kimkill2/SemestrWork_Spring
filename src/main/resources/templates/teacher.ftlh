@@ -8,6 +8,7 @@
 <body>
     <form class="form" action="/adminPage/addTeacher" method="post">
         <label>Добавить Учителя</label><br>
+        <input type="hidden" id=csrf name="${_csrf.parameterName}" value="${_csrf.token}">
         <input class="input" name="username" type="text" placeholder="username" required><br>
         <input class="input" name="password" type="password" placeholder="password" required><br>
         <input class="input" name="email" type="email" placeholder="email" required><br>
@@ -30,6 +31,7 @@
     <br>
     <form class="form" action="/adminPage/updateSpecialization" method="post">
         <label>Обновить специализацию</label><br>
+        <input type="hidden" id=csrf name="${_csrf.parameterName}" value="${_csrf.token}">
         <input class="input" type="text" name="username" placeholder="Имя пользователя"><br>
         <input class="input" type="text" name="specialization" placeholder="Новая Специализация"><br>
         <button type="submit">Обновить специализацию</button>

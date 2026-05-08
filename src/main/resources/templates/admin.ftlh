@@ -8,6 +8,7 @@
 <body>
     <form class="form" action="/adminPage/addAdmin" method="post">
         <label>Добавить админа</label><br>
+        <input type="hidden" id=csrf name="${_csrf.parameterName}" value="${_csrf.token}">
         <input class="input" name="username" type="text" placeholder="username" required><br>
         <input class="input" name="password" type="password" placeholder="password" required><br>
         <input class="input" name="email" type="email" placeholder="email" required><br>
@@ -24,9 +25,16 @@
     <br>
     <form class="form" action="/adminPage/updatePassword" method="post">
         <label>Обновить пароль</label><br>
+        <input type="hidden" id="csrf" name="${_csrf.parameterName}" value="${_csrf.token}">
         <input class="input" type="text" name="username" placeholder="Имя пользователя" required><br>
         <input class="input" type="text" name="password" placeholder="Новые пароль" required><br>
         <button type="submit">Изменить пароль</button>
+    </form>
+    <br>
+    <form class="form" action="/adminPage/deleteAdmin" method="post">
+        <label>Удалить админа</label>
+        <input type="hidden" id="csrf" name="${_csrf.parameterName}" value="${_csrf.token}">
+        <input class="input" type="text" name="username" placeholder="Введите имя пользователя" required><br>
     </form>
 </body>
 </html>

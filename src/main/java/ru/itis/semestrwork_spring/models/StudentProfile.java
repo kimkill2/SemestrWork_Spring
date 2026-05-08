@@ -1,10 +1,7 @@
 package ru.itis.semestrwork_spring.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -26,13 +23,11 @@ public class StudentProfile {
 
     private String parentsFirstName;
     private String parentsLastName;
-    @Column(unique = true)
-    private String phoneNumber;
     private String educationalInstitution;
 
     @OneToMany(mappedBy = "student")
+    @ToString.Exclude
     private List<Comment> comments;
-
 
 
 

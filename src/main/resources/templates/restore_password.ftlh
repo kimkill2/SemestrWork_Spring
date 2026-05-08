@@ -7,6 +7,7 @@
 <body>
     <form action="/restorePassword" method="post">
         <p>На эту почту придёт код</p>
+        <input type="hidden" id=csrf name="${_csrf.parameterName}" value="${_csrf.token}">
         <input type="email" name="email" placeholder="Введите название почты">
         <input type="submit" value="Отправить">
     </form>

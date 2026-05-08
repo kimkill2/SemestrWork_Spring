@@ -15,7 +15,7 @@ import ru.itis.semestrwork_spring.repositories.UsersRepository;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
+//TODO Надо переделать
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 

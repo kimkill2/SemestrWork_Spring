@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,13 +17,12 @@ public class TeacherForm {
     private String password;
     private String email;
     private String role;
-    private String birthDate;
+    private LocalDate birthDate;
     private String gender;
     private String firstName;
     private String lastName;
     private String description;
     private Integer yearsOfExperience;
     private String specialization;
-    private Double rating;
     private Integer pricePerHour;
 }

@@ -84,3 +84,13 @@ body {
 .btn-google:hover {
     background: #f5f5f5;
 }
+
+.error-input {
+    border: 2px solid red !important;
+    background-color: #ffe6e6 !important;
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}

@@ -8,6 +8,7 @@
 <body>
     <form class="form" action="/adminPage/addStudent" method="post">
         <label>Добавить Студента</label><br>
+        <input type="hidden" id=csrf name="${_csrf.parameterName}" value="${_csrf.token}">
         <input class="input" name="username" type="text" placeholder="username" required><br>
         <input class="input" name="password" type="password" placeholder="password" required><br>
         <input class="input" name="email" type="email" placeholder="email" required><br>
@@ -29,6 +30,7 @@
     <br>
     <form class="form" action="/adminPage/updateParentsFirstName" method="post">
         <label>Обновить Имя родителя</label><br>
+        <input type="hidden" id=csrf name="${_csrf.parameterName}" value="${_csrf.token}">
         <input class="input" type="text" name="username" placeholder="Имя пользователя" required><br>
         <input class="input" type="text" name="parentsFirstName" placeholder="Новое Имя родителя" required><br>
         <button type="submit">Обновить имя родителя</button>

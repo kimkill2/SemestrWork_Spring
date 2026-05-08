@@ -50,6 +50,12 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    @PostMapping("/adminPAge/deleteAdmin")
+    public String deleteAdmin(UserForm userForm) {
+
+        return "redirect:/admin";
+    }
+
     @GetMapping("/adminPage/addStudent")
     public String getAddStudentPage() {
         return "student";

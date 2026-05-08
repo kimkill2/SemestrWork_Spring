@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -14,7 +17,7 @@ public class StudentForm {
     private String password;
     private String email;
     private String role;
-    private String birthDate;
+    private LocalDate birthDate;
     private String gender;
     private String firstName;
     private String lastName;

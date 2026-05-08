@@ -15,5 +15,6 @@ public class CommentDto {
     private String text;
     private String author;
     private String subject;
+    private Double rating;
 
 }

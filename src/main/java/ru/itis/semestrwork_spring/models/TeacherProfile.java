@@ -1,10 +1,7 @@
 package ru.itis.semestrwork_spring.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +19,20 @@ public class TeacherProfile {
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User user;
 
     private Integer yearsOfExperience;
-    private Double rating;
     private Integer pricePerHour;
     private String description;
     private String specialization;
 
     @OneToMany(mappedBy = "teacher")
+    @ToString.Exclude
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "teacher")
+    @ToString.Exclude
     private List<TeacherSubject> subjects = new ArrayList<>();
 
 }

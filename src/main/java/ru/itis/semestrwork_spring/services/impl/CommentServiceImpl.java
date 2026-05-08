@@ -2,7 +2,7 @@ package ru.itis.semestrwork_spring.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import ru.itis.semestrwork_spring.dto.CommentsDto;
 import ru.itis.semestrwork_spring.dto.CommentDto;
 import ru.itis.semestrwork_spring.models.Comment;
 import ru.itis.semestrwork_spring.models.StudentProfile;
@@ -14,9 +14,9 @@ import ru.itis.semestrwork_spring.repositories.TeacherProfileRepository;
 import ru.itis.semestrwork_spring.repositories.UsersRepository;
 import ru.itis.semestrwork_spring.services.CommentService;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class CommentServiceImpl implements CommentService {
@@ -52,11 +52,13 @@ public class CommentServiceImpl implements CommentService {
                 .findByUser(teacher.get())
                 .orElseThrow(() -> new RuntimeException("Teacher not found"));
 
+        System.out.println(LocalDate.now());
         Comment comment = Comment.builder()
                 .student(studentProfile)
                 .teacher(teacherProfile)
                 .comment(commentDto.getText())
                 .createdTime(LocalDateTime.now())
+                .rating(commentDto.getRating())
                 .build();
         commentsRepository.save(comment);
     }
@@ -66,6 +68,38 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentsRepository.findById(id).get();
         comment.setComment(commentText);
         commentsRepository.save(comment);
+    }
+
+    @Override
+    public Map<String, Double> getAverageRating() {
+        System.out.println("getAverageRating");
+        List<Object[]> teachers = usersRepository.findTeachers();
+        Map<String, Double> ratings = new HashMap<>();
+        for (Object[] info : teachers) {
+            User user = (User) info[0];
+            List<Comment> commentsList = commentsRepository.findByTeacherUserId(user.getUserId());
+            double averageRating = 0.0;
+            if (!commentsList.isEmpty()) {
+                for (Comment comment : commentsList) {
+                    averageRating += comment.getRating();
+                }
+                averageRating = averageRating / commentsList.size();
+                System.out.println(user.getUserId() + "|" + averageRating / commentsList.size());
+            } else {
+                averageRating = 0.0;
+            }
+            ratings.put(String.valueOf(user.getUserId()), averageRating);
+
+
+        }
+        return ratings;
+    }
+
+    @Override
+    public List<CommentsDto> getComments(Long id) {
+        System.out.println("CommentService.getComments");
+        List<CommentsDto> comments = commentsRepository.findCommentsByTeacherId(id);
+        return comments;
     }
 
 

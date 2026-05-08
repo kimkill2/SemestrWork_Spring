@@ -7,6 +7,7 @@
 </head>
 <body>
     <form action="changePassword" method="post">
+        <input type="hidden" id=csrf name="${_csrf.parameterName}" value="${_csrf.token}">
         <input type="password" name="password" placeholder="Введите пароль">
         <input type="password" name="repeatedPassword" placeholder="Повторите пароль">
         <button type="submit" value="Сменить пароль">Сменить пароль</button>

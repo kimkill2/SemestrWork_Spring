@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    min-height: 100vh;
+    background: #f5f5f5;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 15px 30px;
+    color: white;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+header {
+    width: 100%;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    transition: opacity 0.3s;
+}
+
+.link:hover {
+    opacity: 0.8;
+}
+
+.header .img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    margin: 0;
+}
+
+.img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    margin: 10px auto;
+    display: block;
+}
+
+/* Основной контейнер учителя */
+.teacher-container {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin: 40px auto 30px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.teacher-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.teacher-container .img {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.teacher-name {
+    font-size: 28px;
+    font-weight: 600;
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.teacher-container p {
+    margin: 12px 0;
+    color: #555;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.rating {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffc107;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #e0e0e0;
+}
+
+/* Контейнер с комментариями */
+.comments-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.comments-container h3 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.comment-card {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.comment-card:hover {
+    transform: translateX(5px);
+    background: #f1f3f5;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #764ba2;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.comment-time {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.comment-text {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.empty {
+    text-align: center;
+    color: #999;
+    padding: 40px;
+    font-size: 16px;
+}
+
+/* Форма добавления комментария */
+.add-comment-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto 50px;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.add-comment-container h3 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    background: white;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.3s;
+}
+
+textarea:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+.button-submit {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.button-submit:hover {
+    opacity: 0.9;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .link {
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    .teacher-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .teacher-container .img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .teacher-name {
+        font-size: 24px;
+    }
+
+    .teacher-container p {
+        font-size: 14px;
+    }
+
+    .comments-container,
+    .add-comment-container {
+        padding: 20px;
+    }
+}

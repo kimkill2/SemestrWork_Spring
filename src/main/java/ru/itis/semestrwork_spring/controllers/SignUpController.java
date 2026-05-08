@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import ru.itis.semestrwork_spring.dto.UserForm;
+import ru.itis.semestrwork_spring.models.User;
 import ru.itis.semestrwork_spring.services.SignUpService;
 
 @Controller
@@ -17,9 +19,4 @@ public class SignUpController {
         return "sign_up_page";
     }
 
-    @PostMapping("/signUpPage")
-    public String signUp(UserForm userForm) {
-        signUpService.addUser(userForm);
-        return "redirect:/signUp";
-    }
 }

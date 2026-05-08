@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.CsrfConfig
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import ru.itis.semestrwork_spring.security.CustomOAuth2UserService;
 
 @Configuration
@@ -29,7 +30,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.
-                csrf(CsrfConfigurer::disable)
+                csrf(csrf -> csrf.ignoringRequestMatchers("/signUp", "/signUpPage", "/api/signIn", "/api/signUp", "/logout", "/api/views/**"))
                 .formLogin((form) -> form
                         .loginPage("/signIn")
                         .usernameParameter("username")
@@ -46,22 +47,30 @@ public class SecurityConfig {
                         )
                         .permitAll()
                 )
-                .logout((logout) -> logout.logoutUrl("/logout")
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")
                         .logoutSuccessUrl("/signIn?logout")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()
                 )
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/home/**", "/teachers").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
-                        .requestMatchers("/admin/**", "/adminPage/**").hasRole("ADMIN")
-                        .requestMatchers("/user", "/user/**").authenticated()
                         .requestMatchers("/oauth2/authorization/google","/changePassword","/restore", "/restorePassword","/signUp",
-                                "/signUpPage", "/signIn", "/css/**", "/images/**", "/*.js", "/*.css")
+                                "/signUpPage", "/signIn", "/css/**", "/images/**", "/js/**", "/css/*.css", "/api/signIn", "/api/signUp", "/comments/**", "/api/views/**")
                         .permitAll()
+                        .requestMatchers("/home/**", "/teachers", "/sendCode").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
+                        .requestMatchers("/admin/**", "/adminPage/**").hasRole("ADMIN")
+                        .requestMatchers("/user", "/user/**", "/logout", "/api/sms/**").authenticated()
                         .anyRequest().authenticated()
+                )
+                .exceptionHandling(exceptions -> exceptions
+                        .authenticationEntryPoint(
+                                new LoginUrlAuthenticationEntryPoint("/signIn")
+                        )
+                        .accessDeniedHandler(((request, response, accessDeniedException) ->
+                                response.sendRedirect("/access-denied"))
+                        )
                 );
-                //  .exceptionHandling((ex) -> ex.accessDeniedPage("/exceptions/error_403"));
 
         return http.build();
     }
